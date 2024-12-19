@@ -1,0 +1,25 @@
+.container {
+    width: "50%";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.burger-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+}
