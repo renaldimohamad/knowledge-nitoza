@@ -41,7 +41,7 @@ const Index = () => {
       fetchDataProvinsi()
    }, [])
 
-   const fetchCities = async (provinceId: IDataProvinsi) => {
+   const fetchCities = async (provinceId: number) => {
       try {
          const res = await fetch(
             `https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${provinceId}.json`
@@ -56,9 +56,10 @@ const Index = () => {
    }
 
    const handleProvinceLimitChange = (
-      event: React.ChangeEvent<HTMLInputElement>
+      event: React.ChangeEvent<HTMLElement>
    ) => {
-      const value = parseInt(event.target.value, 10)
+      const target = event.target as HTMLInputElement
+      const value = parseInt(target.value, 10)
       if (!isNaN(value) && value > 0) {
          setProvinceLimit(value)
          setFilteredPosts(posts.slice(0, value))
@@ -68,8 +69,9 @@ const Index = () => {
       }
    }
 
-   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value.toLowerCase()
+   const handleSearchChange = (event: React.ChangeEvent<HTMLElement>) => {
+      const target = event.target as HTMLInputElement
+      const value = target.value.toLowerCase()
       setSearchTerm(value)
 
       if (value === "") {
@@ -149,7 +151,7 @@ const Index = () => {
 
             <div className="d-flex justify-content-center align-items-center">
                <div className="burger-menu">
-                  <p>Daftar Provinsi:</p>
+                  <p className="fw-bold">Daftar Provinsi:</p>
                   {filteredPosts.map((post) => (
                      <CustomButton
                         key={post.id}
@@ -163,7 +165,7 @@ const Index = () => {
 
             <div className="d-flex justify-content-center align-items-center mt-3">
                <div className="main-content">
-                  <p>Daftar Kabupaten/Kota:</p>
+                  <p className="fw-bold">Daftar Kabupaten/Kota:</p>
                   <div className="className">
                      {selectedCities.length > 0 ? (
                         selectedCities.map((city) => (
@@ -174,7 +176,7 @@ const Index = () => {
                            </div>
                         ))
                      ) : (
-                        <p>
+                        <p className="fw-bold">
                            Pilih provinsi untuk melihat daftar kabupaten/kota
                         </p>
                      )}
